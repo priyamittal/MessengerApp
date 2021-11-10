@@ -1,0 +1,31 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #eee;
+}
+.sidenav{
+  background: darkgrey;
+}
+.myMessage {
+  margin-left: 70%;
+  white-space:normal;
+  word-wrap: break-word;
+}
+
+.chatBox{
+  height: 80%;
+  overflow: auto;
+}
+.chatArea{
+  height: 18%;
+}
+.chatButton{
+  margin-left: 15px;
+  margin-bottom: 40px;
+}
+mat-list-option[aria-selected="true"] {
+  background: grey;
+}

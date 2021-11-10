@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <mat-sidenav-container class="example-container">
+      <mat-sidenav mode="side" opened class="sidenav">
+        <form [formGroup]="newChatAddForm" (ngSubmit)="onSubmit(newChatAddForm.value)">
+          <label class="col-4" >
+            Chat Name
+          </label>
+          <input type="text" class=" col-7"
+                 id="name" name="name" formControlName="name">
+          <button class=" btn-primary col-1" type="submit">
+            +
+          </button>
+        </form>
+
+        <mat-selection-list  #chatlist [(ngModel)]="selectedOptions" [multiple]="false" (ngModelChange)="onNgModelChange($event)">
+          <mat-list-option class=" col-3 no-wrap" *ngFor="let chat of this.chats" [value]="chat">
+            {{chat.name}}
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content>Chat Details
+        <div class="col-10 chatBox">
+          <div *ngFor="let message of chatlist.selectedOptions.selected[0]?.value.messages">
+            <label *ngIf="message.myMessage == true" class="myMessage col-3">{{message.message}}</label>
+            <label *ngIf="message.myMessage == false">{{message.message}}</label>
+          </div>
+        </div>
+        <div class=" col-12">
+          <textarea [disabled]="chatlist.selectedOptions.selected[0] == undefined" class="chatArea col-9"  [(ngModel)]="inputMessage">{{inputMessage}}
+          </textarea>
+          <button [disabled]="chatlist.selectedOptions.selected[0] == undefined"  class="col-1 btn btn-space btn-primary chatButton" (click)="sendMsssage(chatlist.selectedOptions.selected[0].value.id, this.inputMessage)"> Send</button>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>
